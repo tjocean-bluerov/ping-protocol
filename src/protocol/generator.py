@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import argparse
 import os
 import json
 import re
@@ -8,6 +9,12 @@ from jinja2 import Environment, FileSystemLoader
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 JINJA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates/')
+
+parser = argparse.ArgumentParser(description='Generator script for ping protocol.')
+parser.add_argument('--type', type=str, default='c', choices=['c', 'qt'], required=False,
+                    help='Generate type')
+
+args = parser.parse_args()
 
 def calc_payload(payloads):
     total_size = 0
@@ -65,7 +72,7 @@ def get_type_base_size(types):
     print(types, total_bytes)
     return total_bytes
 
-def get_type_string(t, pointer=False, name=''):
+def get_type_string(t, pointer=False, name='', qt=False):
     # Move from u/i short types
 
     # Remove vector info
@@ -91,6 +98,9 @@ def get_type_string(t, pointer=False, name=''):
     elif name:
         s = s + ' {0}'.format(name)
 
+    if qt and s[0] == 'u':
+        return 'uint'
+
     return s
 
 def is_vector(t):
@@ -108,39 +118,50 @@ if __name__ == "__main__":
         # Get json data
         protocol_data = json.load(open(os.path.join(JINJA_PATH, json_file), 'r'))
 
-        # Create prefix name
-        file_prefix_name = protocol_data['class_info']['name'].lower()
-        class_names.append(file_prefix_name)
-
-        # Create output file
-        output_path = os.path.join(PATH, '{0}/'.format(file_prefix_name))
-        if not os.path.exists(output_path):
-            os.makedirs(output_path)
-
         # Create our lovely jinja env
         j2_env = Environment(loader=FileSystemLoader(JINJA_PATH), trim_blocks=True)
         j2_env.globals.update(calc_payload=calc_payload)
         j2_env.globals.update(capitalize=capitalize)
+        j2_env.globals.update(convert_c_name=convert_c_name)
         j2_env.globals.update(convert_short_type=convert_short_type)
         j2_env.globals.update(get_c_size=get_c_size)
         j2_env.globals.update(get_type_base_size=get_type_base_size)
         j2_env.globals.update(get_type_string=get_type_string)
         j2_env.globals.update(is_vector=is_vector)
+        j2_env.globals.update(len=len)
         j2_env.globals.update(_actual_message_type='')
 
-        # Create main class
-        f = open(os.path.join(output_path, "{0}.h".format(file_prefix_name)), "w")
-        f.write(j2_env.get_template(protocol_data['class_info']['file']).render(protocol_data))
-        f.close()
+        # Create prefix name
+        file_prefix_name = protocol_data['class_info']['name'].lower()
+        class_names.append(file_prefix_name)
 
-        # Create subclass
-        for message_type in protocol_data["messages"]:
-            j2_env.globals.update(_actual_message_type=message_type)
-            f = open(os.path.join(output_path, "{0}_{1}.h".format(file_prefix_name, message_type)), "w")
-            f.write(j2_env.get_template(protocol_data['subclass_info']['file']).render(protocol_data))
+        if args.type == 'c':
+            # Create output file
+            output_path = os.path.join(PATH, '{0}/'.format(file_prefix_name))
+            if not os.path.exists(output_path):
+                os.makedirs(output_path)
+
+            # Create main class
+            f = open(os.path.join(output_path, "{0}.h".format(file_prefix_name)), "w")
+            f.write(j2_env.get_template(protocol_data['class_info']['file']).render(protocol_data))
             f.close()
 
-        # Create all header with all subclasses
-        f = open(os.path.join(output_path, "{0}_all.h".format(file_prefix_name)), "w")
-        f.write(j2_env.get_template('_all.h.in').render(protocol_data))
-        f.close()
+            # Create subclass
+            for message_type in protocol_data["messages"]:
+                j2_env.globals.update(_actual_message_type=message_type)
+                f = open(os.path.join(output_path, "{0}_{1}.h".format(file_prefix_name, message_type)), "w")
+                f.write(j2_env.get_template(protocol_data['subclass_info']['file']).render(protocol_data))
+                f.close()
+
+            # Create all header with all subclasses
+            f = open(os.path.join(output_path, "{0}_all.h".format(file_prefix_name)), "w")
+            f.write(j2_env.get_template('_all.h.in').render(protocol_data))
+            print(j2_env.get_template('pingmessage_qt_helper.in').render(protocol_data))
+            f.close()
+
+        elif args.type == 'qt':
+            print('Qt!')
+            # Create subclass
+            for message_type in protocol_data["messages"]:
+                j2_env.globals.update(_actual_message_type=message_type)
+                print(j2_env.get_template('pingmessage_qt_helper.in').render(protocol_data))

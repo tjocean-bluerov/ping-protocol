@@ -1,0 +1,88 @@
+// Transmit
+{% set message_type = _actual_message_type %}
+{% for message in messages[message_type] %}
+{% if messages[message_type][message].payload %}
+
+{% for payload in messages[message_type][message].payload %}
+    {{get_type_string(payload.type)}} {{message}}_{{payload.name}}() { return _{{message}}_{{payload.name}}; }
+    Q_PROPERTY({{get_type_string(payload.type)}} {{message}}_{{payload.name}} READ {{message}}_{{payload.name}} NOTIFY {{message}}_{{convert_c_name(payload.name)}})
+{% endfor %}
+{% if len(messages[message_type][message].payload) == 1 %}
+{% set payload = messages[message_type][message].payload[0] %}
+    void set_{{message}}_{{payload.name}}({{get_type_string(payload.type)}} {{payload.name}})
+    {
+        {{subclass_info.name}}{{message_type}}_{{message}} m;
+        m.set_{{payload.name}}({{payload.name}});
+        m.updateChecksum();
+        writeMessage(m);
+        request({{capitalize(message_type)}}Namespace::{{capitalize(message)}});
+    }
+{% else %}
+    /*
+    void set_{{message}}(auto {{message}})
+    {
+        {{subclass_info.name}}{{message_type}}_{{message}} m;
+{% for payload in messages[message_type][message].payload %}
+        m.set_{{payload.name}}({{message}}['{{payload.name}}']);
+{% endfor %}
+        m.updateChecksum();
+        writeMessage(m);
+        request({{capitalize(message_type)}}Namespace::{{capitalize(message)}});
+    }
+    */
+{% endif %}
+{% endif %}
+{% endfor %}
+
+// Receive
+
+{% for message in messages[message_type] %}
+{% if messages[message_type][message].payload %}
+    case {{capitalize(message_type)}}Namespace::{{capitalize(message)}}: {
+        {{subclass_info.name}}{{message_type}}_{{message}} m(msg);
+{% for payload in messages[message_type][message].payload %}
+        _{{message}}_{{payload.name}} = m.{{payload.name}}();
+{% endfor %}
+{% for payload in messages[message_type][message].payload %}
+        emit {{message}}_{{convert_c_name(payload.name)}}();
+{% endfor %}
+    }
+    break;
+
+{% endif %}
+{% endfor %}
+
+// Functions and variables
+
+signals:
+{% set ns = namespace(signal_list=[], var_list=[]) %}
+{% for message in messages[message_type] %}
+{% if messages[message_type][message].payload%}
+    //{{subclass_info.name}}{{message_type}}_{{message}}
+{% for payload in messages[message_type][message].payload %}
+{% if payload.name not in ns.signal_list %}
+    void {{message}}_{{convert_c_name(payload.name)}}();
+{% else %}
+    //void {{message}}_{{convert_c_name(payload.name)}}();
+{% endif %}
+{% set ns.signal_list = ns.signal_list + [message + "_" + payload.name] %}
+{% endfor %}
+
+{% endif %}
+{% endfor %}
+
+private:
+{% for message in messages[message_type] %}
+{% if messages[message_type][message].payload %}
+    //{{subclass_info.name}}{{message_type}}_{{message}}
+{% for payload in messages[message_type][message].payload %}
+{% if payload.name not in ns.var_list %}
+    {{get_type_string(payload.type)}} _{{message}}_{{payload.name}};
+{% else %}
+    //{{get_type_string(payload.type)}} _{{message}}_{{payload.name}};
+{% endif %}
+{% set ns.var_list = ns.var_list + [message + "_" + payload.name] %}
+{% endfor %}
+
+{% endif %}
+{% endfor %}
