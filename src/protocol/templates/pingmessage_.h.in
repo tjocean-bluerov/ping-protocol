@@ -8,10 +8,50 @@
 #pragma once
 
 #include "pingmessage.h"
+// see https://en.cppreference.com/w/cpp/named_req/StandardLayoutType
+
+
+struct pingmsg_header {
+    pingmsg_header(uint16_t p = 0, uint16_t m = 0, uint8_t s = 0, uint8_t d = 0)
+        : start1 { 'B' }
+        , start2 { 'R' }
+        , payload_length { p }
+        , message_id { m }
+        , source_device_id { s }
+        , destination_device_id { d }
+    {}
+    uint8_t start1;
+    uint8_t start2;
+    uint16_t payload_length;
+    uint16_t message_id;
+    uint8_t source_device_id;
+    uint8_t destination_device_id;
+};
+
+struct pingmsg {
+    pingmsg(uint16_t p = 0, uint16_t m = 0, uint8_t s = 0, uint8_t d = 0)
+        : header(p, m, s, d)
+    {}
+  struct pingmsg_header header;
+  uint8_t* payload_data(uint16_t offset = 0) { return (uint8_t*)this + sizeof(pingmsg_header) + offset; }
+};
 
 {% set message_type = _actual_message_type %}
 {% for message in messages[message_type]['all_msgs'] %}
 {% set total_payload = calc_payload(messages[message_type]['all_msgs'][message].payload) %}
+struct {{message}}_payload {
+{% for payload in messages[message_type]['all_msgs'][message].payload %}
+    {{get_type_string(payload.type, pointer=False)}} {{payload.name}};
+{% endfor %}
+} __attribute__((packed));
+
+struct message_{{message}} : pingmsg {
+    message_{{message}}(uint8_t s = 0, uint8_t d = 0)
+        : pingmsg({{total_payload}}, {{messages[message_type]['all_msgs'][message].id}}, s, d)
+    {}
+    struct {{message}}_payload payload;
+} __attribute__((packed));
+
 class {{subclass_info.name}}{{message_type}}_{{message}} : public {{class_info.name}}
 {
 public:
