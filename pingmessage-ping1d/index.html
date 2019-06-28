@@ -1,0 +1,1491 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>ping1d - Ping Protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#ping1d-messages" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="Ping Protocol" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Ping Protocol
+            </span>
+            <span class="md-header-nav__topic">
+              
+                ping1d
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="Ping Protocol" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Ping Protocol
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Message Definitions
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Message Definitions
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pingmessage-common/" title="common" class="md-nav__link">
+      common
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        ping1d
+      </label>
+    
+    <a href="./" title="ping1d" class="md-nav__link md-nav__link--active">
+      ping1d
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set" title="set" class="md-nav__link">
+    set
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1000-set_device_id" title="1000 set_device_id" class="md-nav__link">
+    1000 set_device_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1001-set_range" title="1001 set_range" class="md-nav__link">
+    1001 set_range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1002-set_speed_of_sound" title="1002 set_speed_of_sound" class="md-nav__link">
+    1002 set_speed_of_sound
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1003-set_mode_auto" title="1003 set_mode_auto" class="md-nav__link">
+    1003 set_mode_auto
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1004-set_ping_interval" title="1004 set_ping_interval" class="md-nav__link">
+    1004 set_ping_interval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1005-set_gain_setting" title="1005 set_gain_setting" class="md-nav__link">
+    1005 set_gain_setting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1006-set_ping_enable" title="1006 set_ping_enable" class="md-nav__link">
+    1006 set_ping_enable
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get" title="get" class="md-nav__link">
+    get
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1200-firmware_version" title="1200 firmware_version" class="md-nav__link">
+    1200 firmware_version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1201-device_id" title="1201 device_id" class="md-nav__link">
+    1201 device_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1202-voltage_5" title="1202 voltage_5" class="md-nav__link">
+    1202 voltage_5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1203-speed_of_sound" title="1203 speed_of_sound" class="md-nav__link">
+    1203 speed_of_sound
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1204-range" title="1204 range" class="md-nav__link">
+    1204 range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1205-mode_auto" title="1205 mode_auto" class="md-nav__link">
+    1205 mode_auto
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1206-ping_interval" title="1206 ping_interval" class="md-nav__link">
+    1206 ping_interval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1207-gain_setting" title="1207 gain_setting" class="md-nav__link">
+    1207 gain_setting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1208-transmit_duration" title="1208 transmit_duration" class="md-nav__link">
+    1208 transmit_duration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1210-general_info" title="1210 general_info" class="md-nav__link">
+    1210 general_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1211-distance_simple" title="1211 distance_simple" class="md-nav__link">
+    1211 distance_simple
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1212-distance" title="1212 distance" class="md-nav__link">
+    1212 distance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1213-processor_temperature" title="1213 processor_temperature" class="md-nav__link">
+    1213 processor_temperature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1214-pcb_temperature" title="1214 pcb_temperature" class="md-nav__link">
+    1214 pcb_temperature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1215-ping_enable" title="1215 ping_enable" class="md-nav__link">
+    1215 ping_enable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1300-profile" title="1300 profile" class="md-nav__link">
+    1300 profile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control" title="control" class="md-nav__link">
+    control
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1100-goto_bootloader" title="1100 goto_bootloader" class="md-nav__link">
+    1100 goto_bootloader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1400-continuous_start" title="1400 continuous_start" class="md-nav__link">
+    1400 continuous_start
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1401-continuous_stop" title="1401 continuous_stop" class="md-nav__link">
+    1401 continuous_stop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pingmessage-ping360/" title="ping360" class="md-nav__link">
+      ping360
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set" title="set" class="md-nav__link">
+    set
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1000-set_device_id" title="1000 set_device_id" class="md-nav__link">
+    1000 set_device_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1001-set_range" title="1001 set_range" class="md-nav__link">
+    1001 set_range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1002-set_speed_of_sound" title="1002 set_speed_of_sound" class="md-nav__link">
+    1002 set_speed_of_sound
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1003-set_mode_auto" title="1003 set_mode_auto" class="md-nav__link">
+    1003 set_mode_auto
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1004-set_ping_interval" title="1004 set_ping_interval" class="md-nav__link">
+    1004 set_ping_interval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1005-set_gain_setting" title="1005 set_gain_setting" class="md-nav__link">
+    1005 set_gain_setting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1006-set_ping_enable" title="1006 set_ping_enable" class="md-nav__link">
+    1006 set_ping_enable
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get" title="get" class="md-nav__link">
+    get
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1200-firmware_version" title="1200 firmware_version" class="md-nav__link">
+    1200 firmware_version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1201-device_id" title="1201 device_id" class="md-nav__link">
+    1201 device_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1202-voltage_5" title="1202 voltage_5" class="md-nav__link">
+    1202 voltage_5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1203-speed_of_sound" title="1203 speed_of_sound" class="md-nav__link">
+    1203 speed_of_sound
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1204-range" title="1204 range" class="md-nav__link">
+    1204 range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1205-mode_auto" title="1205 mode_auto" class="md-nav__link">
+    1205 mode_auto
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1206-ping_interval" title="1206 ping_interval" class="md-nav__link">
+    1206 ping_interval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1207-gain_setting" title="1207 gain_setting" class="md-nav__link">
+    1207 gain_setting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1208-transmit_duration" title="1208 transmit_duration" class="md-nav__link">
+    1208 transmit_duration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1210-general_info" title="1210 general_info" class="md-nav__link">
+    1210 general_info
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1211-distance_simple" title="1211 distance_simple" class="md-nav__link">
+    1211 distance_simple
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1212-distance" title="1212 distance" class="md-nav__link">
+    1212 distance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1213-processor_temperature" title="1213 processor_temperature" class="md-nav__link">
+    1213 processor_temperature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1214-pcb_temperature" title="1214 pcb_temperature" class="md-nav__link">
+    1214 pcb_temperature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1215-ping_enable" title="1215 ping_enable" class="md-nav__link">
+    1215 ping_enable
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1300-profile" title="1300 profile" class="md-nav__link">
+    1300 profile
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control" title="control" class="md-nav__link">
+    control
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1100-goto_bootloader" title="1100 goto_bootloader" class="md-nav__link">
+    1100 goto_bootloader
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1400-continuous_start" title="1400 continuous_start" class="md-nav__link">
+    1400 continuous_start
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1401-continuous_stop" title="1401 continuous_stop" class="md-nav__link">
+    1401 continuous_stop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="ping1d-messages">Ping1d messages</h1>
+<h2 id="set">set</h2>
+<h4 id="1000-set_device_id">1000 set_device_id</h4>
+<p>Set the device ID.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8</td>
+<td>device_id</td>
+<td>Device ID (0-254). 255 is reserved for broadcast messages.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1001-set_range">1001 set_range</h4>
+<p>Set the scan range for acoustic measurements.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u32</td>
+<td>scan_start</td>
+<td></td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u32</td>
+<td>scan_length</td>
+<td>The length of the scan range.</td>
+<td>mm</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1002-set_speed_of_sound">1002 set_speed_of_sound</h4>
+<p>Set the speed of sound used for distance calculations.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u32</td>
+<td>speed_of_sound</td>
+<td>The speed of sound in the measurement medium. ~1,500,000 mm/s for water.</td>
+<td>mm/s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1003-set_mode_auto">1003 set_mode_auto</h4>
+<p>Set automatic or manual mode. Manual mode allows for manual selection of the gain and scan range.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8</td>
+<td>mode_auto</td>
+<td>0: manual mode. 1: auto mode.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1004-set_ping_interval">1004 set_ping_interval</h4>
+<p>The interval between acoustic measurements.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>ping_interval</td>
+<td>The interval between acoustic measurements.</td>
+<td>ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1005-set_gain_setting">1005 set_gain_setting</h4>
+<p>Set the current gain setting.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8</td>
+<td>gain_setting</td>
+<td>The current gain setting. 0: 0.6, 1: 1.8, 2: 5.5, 3: 12.9, 4: 30.2, 5: 66.1, 6: 144</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1006-set_ping_enable">1006 set_ping_enable</h4>
+<p>Enable or disable acoustic measurements.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8</td>
+<td>ping_enabled</td>
+<td>0: Disable, 1: Enable.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="get">get</h2>
+<h4 id="1200-firmware_version">1200 firmware_version</h4>
+<p>Device information</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8</td>
+<td>device_type</td>
+<td>Device type. 0: Unknown; 1: Echosounder</td>
+<td></td>
+</tr>
+<tr>
+<td>u8</td>
+<td>device_model</td>
+<td>Device model. 0: Unknown; 1: Ping1D</td>
+<td></td>
+</tr>
+<tr>
+<td>u16</td>
+<td>firmware_version_major</td>
+<td>Firmware version major number.</td>
+<td></td>
+</tr>
+<tr>
+<td>u16</td>
+<td>firmware_version_minor</td>
+<td>Firmware version minor number.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1201-device_id">1201 device_id</h4>
+<p>The device ID.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8</td>
+<td>device_id</td>
+<td>The device ID (0-254). 255 is reserved for broadcast messages.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1202-voltage_5">1202 voltage_5</h4>
+<p>The 5V rail voltage.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>voltage_5</td>
+<td>The 5V rail voltage.</td>
+<td>mV</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1203-speed_of_sound">1203 speed_of_sound</h4>
+<p>The speed of sound used for distance calculations.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u32</td>
+<td>speed_of_sound</td>
+<td>The speed of sound in the measurement medium. ~1,500,000 mm/s for water.</td>
+<td>mm/s</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1204-range">1204 range</h4>
+<p>The scan range for acoustic measurements. Measurements returned by the device will lie in the range (scan_start, scan_start + scan_length).</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u32</td>
+<td>scan_start</td>
+<td>The beginning of the scan range in mm from the transducer.</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u32</td>
+<td>scan_length</td>
+<td>The length of the scan range.</td>
+<td>mm</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1205-mode_auto">1205 mode_auto</h4>
+<p>The current operating mode of the device. Manual mode allows for manual selection of the gain and scan range.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8</td>
+<td>mode_auto</td>
+<td>0: manual mode, 1: auto mode</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1206-ping_interval">1206 ping_interval</h4>
+<p>The interval between acoustic measurements.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>ping_interval</td>
+<td>The minimum interval between acoustic measurements. The actual interval may be longer.</td>
+<td>ms</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1207-gain_setting">1207 gain_setting</h4>
+<p>The current gain setting.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u32</td>
+<td>gain_setting</td>
+<td>The current gain setting. 0: 0.6, 1: 1.8, 2: 5.5, 3: 12.9, 4: 30.2, 5: 66.1, 6: 144</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1208-transmit_duration">1208 transmit_duration</h4>
+<p>The duration of the acoustic activation/transmission.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>transmit_duration</td>
+<td>Acoustic pulse duration.</td>
+<td>microseconds</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1210-general_info">1210 general_info</h4>
+<p>General information.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>firmware_version_major</td>
+<td>Firmware major version.</td>
+<td></td>
+</tr>
+<tr>
+<td>u16</td>
+<td>firmware_version_minor</td>
+<td>Firmware minor version.</td>
+<td></td>
+</tr>
+<tr>
+<td>u16</td>
+<td>voltage_5</td>
+<td>Device supply voltage.</td>
+<td>mV</td>
+</tr>
+<tr>
+<td>u16</td>
+<td>ping_interval</td>
+<td>The interval between acoustic measurements.</td>
+<td>ms</td>
+</tr>
+<tr>
+<td>u8</td>
+<td>gain_setting</td>
+<td>The current gain setting. 0: 0.6, 1: 1.8, 2: 5.5, 3: 12.9, 4: 30.2, 5: 66.1, 6: 144</td>
+<td></td>
+</tr>
+<tr>
+<td>u8</td>
+<td>mode_auto</td>
+<td>The current operating mode of the device. 0: manual mode, 1: auto mode</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1211-distance_simple">1211 distance_simple</h4>
+<p>The distance to target with confidence estimate.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u32</td>
+<td>distance</td>
+<td>Distance to the target.</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u8</td>
+<td>confidence</td>
+<td>Confidence in the distance measurement.</td>
+<td>%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1212-distance">1212 distance</h4>
+<p>The distance to target with confidence estimate. Relevant device parameters during the measurement are also provided.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u32</td>
+<td>distance</td>
+<td>The current return distance determined for the most recent acoustic measurement.</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u16</td>
+<td>confidence</td>
+<td>Confidence in the most recent range measurement.</td>
+<td>%</td>
+</tr>
+<tr>
+<td>u16</td>
+<td>transmit_duration</td>
+<td>The acoustic pulse length during acoustic transmission/activation.</td>
+<td>us</td>
+</tr>
+<tr>
+<td>u32</td>
+<td>ping_number</td>
+<td>The pulse/measurement count since boot.</td>
+<td></td>
+</tr>
+<tr>
+<td>u32</td>
+<td>scan_start</td>
+<td>The beginning of the scan region in mm from the transducer.</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u32</td>
+<td>scan_length</td>
+<td>The length of the scan region.</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u32</td>
+<td>gain_setting</td>
+<td>The current gain setting. 0: 0.6, 1: 1.8, 2: 5.5, 3: 12.9, 4: 30.2, 5: 66.1, 6: 144</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1213-processor_temperature">1213 processor_temperature</h4>
+<p>Temperature of the device cpu.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>processor_temperature</td>
+<td>The temperature in centi-degrees Centigrade (100 * degrees C).</td>
+<td>cC</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1214-pcb_temperature">1214 pcb_temperature</h4>
+<p>Temperature of the on-board thermistor.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>pcb_temperature</td>
+<td>The temperature in centi-degrees Centigrade (100 * degrees C).</td>
+<td>cC</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1215-ping_enable">1215 ping_enable</h4>
+<p>Acoustic output enabled state.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8</td>
+<td>ping_enabled</td>
+<td>The state of the acoustic output. 0: disabled, 1:enabled</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1300-profile">1300 profile</h4>
+<p>A profile produced from a single acoustic measurement. The data returned is an array of response strength at even intervals across the scan region. The scan region is defined as the region between <scan_start> and <scan_start + scan_length> millimeters away from the transducer. A distance measurement to the target is also provided.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u32</td>
+<td>distance</td>
+<td>The current return distance determined for the most recent acoustic measurement.</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u16</td>
+<td>confidence</td>
+<td>Confidence in the most recent range measurement.</td>
+<td>%</td>
+</tr>
+<tr>
+<td>u16</td>
+<td>transmit_duration</td>
+<td>The acoustic pulse length during acoustic transmission/activation.</td>
+<td>us</td>
+</tr>
+<tr>
+<td>u32</td>
+<td>ping_number</td>
+<td>The pulse/measurement count since boot.</td>
+<td></td>
+</tr>
+<tr>
+<td>u32</td>
+<td>scan_start</td>
+<td>The beginning of the scan region in mm from the transducer.</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u32</td>
+<td>scan_length</td>
+<td>The length of the scan region.</td>
+<td>mm</td>
+</tr>
+<tr>
+<td>u32</td>
+<td>gain_setting</td>
+<td>The current gain setting. 0: 0.6, 1: 1.8, 2: 5.5, 3: 12.9, 4: 30.2, 5: 66.1, 6: 144</td>
+<td></td>
+</tr>
+<tr>
+<td>u16</td>
+<td>profile_data_length</td>
+<td>The length of the proceeding vector field</td>
+<td></td>
+</tr>
+<tr>
+<td>u8[]</td>
+<td>profile_data</td>
+<td>An array of return strength measurements taken at regular intervals across the scan region.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="control">control</h2>
+<h4 id="1100-goto_bootloader">1100 goto_bootloader</h4>
+<p>Send the device into the bootloader. This is useful for firmware updates.</p>
+<p>No payload.</p>
+<h4 id="1400-continuous_start">1400 continuous_start</h4>
+<p>Command to initiate continuous data stream of profile messages.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>id</td>
+<td>The message id to stream. 1300: profile</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1401-continuous_stop">1401 continuous_stop</h4>
+<p>Command to stop the continuous data stream of profile messages.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+<th>Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u16</td>
+<td>id</td>
+<td>The message id to stop streaming. 1300: profile</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../pingmessage-common/" title="common" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                common
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../pingmessage-ping360/" title="ping360" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                ping360
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.245445c6.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
